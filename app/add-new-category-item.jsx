@@ -53,7 +53,7 @@ export default function addNewCategoryItem() {
       });
 
     if (data) {
-      const fileUrl = "https://xrzqfkunmsncxeapnjly.supabase.co/storage/v1/object/public/images/" + fileName + ".png";
+      const fileUrl = "https://zievatneehjtkkuvbuxy.supabase.co/storage/v1/object/public/images/" + fileName + ".png";
       console.log(fileUrl);
 
       const { data, error } = await supabase.from('CategoryItems')
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   input: {
-    fontSize: 18,
+    fontSize: 22,
     width: '100%',
   },
   button: {

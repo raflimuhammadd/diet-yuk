@@ -11,6 +11,7 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
   const [updatedName, setUpdatedName] = useState('');
   const [updatedCalories, setUpdatedCalories] = useState('');
   const [updatedUrl, setUpdatedUrl] = useState('');
+  const [updateNote, setUpdateNote] = useState('');
 
   const onDeleteItem = async (id) => {
     const { error } = await supabase
@@ -31,8 +32,9 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
   const onEditItem = (item) => {
     setEditingItem(item.id);
     setUpdatedName(item.name);
-    setUpdatedCalories(item.calories.toString());
-    setUpdatedUrl(item.url);
+    setUpdatedCalories(item.calories ? item.calories.toString() : '');
+    setUpdateNote(item.note ? item.note : '');
+    setUpdatedUrl(item.url ? item.url : '');
   };
 
   const onUpdateItem = async (id) => {
@@ -46,6 +48,7 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
       .update({
         name: updatedName,
         calories: parseInt(updatedCalories),
+        note: updateNote,
         url: updatedUrl,
       })
       .eq('id', id);
@@ -73,6 +76,7 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
                 <Image source={{ uri: item.image }} style={styles.image} />
                 <View style={{ flex: 1, marginLeft: 10 }}>
                   <Text style={styles.name}>{item.name}</Text>
+                  <Text style={styles.note}>{item.note}</Text>
                   <Text style={styles.url} numberOfLines={2}>
                     {item.url}
                   </Text>
@@ -106,6 +110,12 @@ export default function CourseItemList({ categoryData, setUpdateRecord }) {
                     onChangeText={setUpdatedCalories}
                     placeholder="Calories"
                     keyboardType="numeric"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    value={updateNote}
+                    onChangeText={setUpdateNote}
+                    placeholder="Note"
                   />
                   <TextInput
                     style={styles.input}
