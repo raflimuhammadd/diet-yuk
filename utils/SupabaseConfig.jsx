@@ -1,7 +1,7 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 
 // Create a single supabase client for interacting with your database
 export const supabase = createClient(
-  'https://xrzqfkunmsncxeapnjly.supabase.co',
-  ''
+    "https://xrzqfkunmsncxeapnjly.supabase.co",
+    "",
 );
